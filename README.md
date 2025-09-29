@@ -2,4 +2,4 @@
 
 Desarrolladores:
 Juan Manuel Garrido Amaya - 192544
-Jhon Sanchez - 1925
+Jhon Sanchez - 192551
