@@ -1,32 +1,88 @@
-# Primer Parcial de Desarrollo Web 
+# 🛒 Tienda de Electrodomésticos – Segundo Parcial  
+## 🚀 Aplicación Web Modular con Vue.js y Bootstrap 5.3  
 
-## Desarrolladores  
-- Juan Manuel Garrido Amaya - 192544  
-- Jhon Fernando Sanchez Santiago - 192551
+## 👥 Desarrolladores  
+- **Juan Manuel Garrido Amaya** – 192544  
+- **Jhon Fernando Sanchez Santiago** – 192551  
 
-# Fragmentos, Plantillas y Web Components  
+---
 
-## Fragmentos  
-Son partes de código HTML que se separan en archivos distintos para ser reutilizados en varias páginas o secciones. Con esto se evita la duplicación y se facilita el mantenimiento del proyecto.  
+## 🧠 Competencia  
+Desarrollar una aplicación web modularizada aplicando **componentización, ruteo y consumo de APIs externas** mediante **Vue.js 3** y **Bootstrap 5.3**, siguiendo buenas prácticas de organización de código, diseño responsivo y estructura modular.
 
-## Plantillas  
-Son estructuras HTML predefinidas que permiten organizar cómo se mostrará un contenido dinámico. A partir de una plantilla se pueden generar múltiples elementos similares con diferentes datos.  
+---
 
-## Web Components  
-Tecnología nativa de los navegadores que permite crear elementos personalizados y reutilizables, con su propio comportamiento y estilos aislados dentro del *Shadow DOM*.  
-En este proyecto se implementó el componente `<product-card>` para mostrar productos con su nombre, descripción, precio e imagen.  
+## 🧭 Descripción General  
+Este proyecto consiste en el desarrollo de una **aplicación web para la gestión de una Tienda de Electrodomésticos**.  
+Permite visualizar, agregar, editar y eliminar productos electrónicos, simulando el funcionamiento de una tienda digital moderna.  
 
-# Implementación del Formulario de Inicio de Sesión  
-- Se creó un formulario con campos para **usuario** y **contraseña**.  
-- Se manejó el evento `submit` con JavaScript para:  
-  - Prevenir el refresco de la página.  
-  - Validar que los campos no estén vacíos.  
-  - Comprobar credenciales y mostrar un mensaje de error o redirigir al usuario.  
-- Se aplicaron estilos coherentes con el resto de la aplicación (colores, tipografía y diseño responsive).  
+La aplicación implementa componentes reutilizables, navegación dinámica con `vue-router` y consumo de datos desde una **API externa** para mostrar información real de productos.  
+El diseño se adapta a diferentes tamaños de pantalla utilizando **Bootstrap 5.3**.
 
-# Buenas Prácticas Aplicadas  
-- **Modularización del código:** Se separaron los fragmentos (`header`, `sidebar`, `footer`) y el componente `<product-card>` en archivos distintos.  
-- **Uso de Web Components:** Lógica y estilos encapsulados en el *Shadow DOM* para evitar conflictos de CSS y hacer las tarjetas reutilizables.  
-- **Separación de datos y vista:** Los productos se cargan desde un archivo `products.json`, manteniendo independencia entre contenido y presentación.  
-- **Accesibilidad y semántica:** Uso de etiquetas correctas y atributos `alt` en imágenes.  
-- **Estilos consistentes y dinámicos:** Bordes redondeados, sombras suaves, transiciones y hover effects para mejorar la experiencia de usuario.  
+---
+
+## 🧩 Requerimientos Cumplidos  
+
+### 1️⃣ Vista de Login (`LoginView`)  
+- Validación de usuario mediante un archivo local `usuarios.json`.  
+- Si las credenciales son correctas, redirige al **Dashboard principal**.  
+- En caso contrario, muestra una alerta visual con **Bootstrap**.  
+> ⚠️ *Esta validación es solo educativa y no representa autenticación real.*
+
+---
+
+### 2️⃣ Dashboard Principal (`DashboardView`)  
+- Incluye **Navbar** y **Sidebar** como componentes reutilizables.  
+- Permite navegar entre las diferentes secciones de la tienda sin recargar la página.  
+- Utiliza `<router-view>` para renderizar dinámicamente las vistas hijas.
+
+---
+
+### 3️⃣ Gestión de Productos (`ProductView`)  
+- Muestra un catálogo de electrodomésticos obtenidos desde una **API externa**.  
+- Permite realizar acciones de:  
+  - ✅ Listar productos  
+  - ➕ Agregar nuevos productos  
+  - ✏️ Editar productos existentes  
+  - ❌ Eliminar productos  
+- Los productos se presentan en tarjetas o tabla con estilo **Bootstrap**.
+
+---
+
+### 4️⃣ Componentes Reutilizables  
+- **NavbarComponent:** Muestra el nombre de la tienda (“Tienda de Electrodomésticos”) y opciones de navegación.  
+- **SidebarComponent:** Contiene las rutas del panel (Inicio, Productos, Clientes, etc.).  
+- **FooterComponent:** Pie de página con los derechos reservados.  
+- **ProductCardComponent:** Tarjeta individual con la imagen, nombre, precio y botón de acción de cada electrodoméstico.  
+
+Los componentes se comunican mediante **props** y **eventos personalizados** (`emit`).
+
+---
+
+### 5️⃣ Ruteo y Navegación (`vue-router`)  
+Rutas principales configuradas:  
+- `/login` → LoginView  
+- `/dashboard` → DashboardView  
+- `/dashboard/productos` → ProductView  
+- `/dashboard/clientes` (opcional)  
+
+El Dashboard mantiene visible el **Sidebar** al navegar entre rutas hijas.
+
+---
+
+### 6️⃣ Estilos y Diseño  
+- Basado en **Bootstrap 5.3**.  
+- Paleta de colores inspirada en tecnología (azules, grises y blancos).  
+- Diseño **responsivo** y adaptable a dispositivos móviles.  
+- Uso coherente de tipografía, espaciado y tarjetas con sombras suaves.
+
+---
+
+## 🌐 Consumo de API Externa  
+Ejemplo de implementación (`services/api.js`):
+
+```javascript
+export const getProducts = async () => {
+  const response = await fetch('https://fakestoreapi.com/products');
+  return await response.json();
+};
